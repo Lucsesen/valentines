@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <!-- Meta tag para responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Valentines!</title>
   <style>
     /* Reset e estilos gerais */
@@ -21,6 +23,8 @@
       justify-content: center;
       height: 100vh;
       position: relative;
+      padding: 20px; /* Espaço para bordas em telas menores */
+      text-align: center;
     }
     h1 {
       font-size: 3rem;
@@ -59,6 +63,7 @@
       animation: fadeIn 3s ease forwards;
       animation-delay: 2s;
       z-index: 2;
+      max-width: 90%; /* Limita a largura para telas pequenas */
     }
     @keyframes fadeIn {
       to { opacity: 1; }
@@ -93,6 +98,22 @@
       100% {
         transform: translateY(-100px) rotate(360deg);
         opacity: 0;
+      }
+    }
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .message {
+        font-size: 1rem;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        margin-top: 15px;
       }
     }
   </style>
