@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Valentines!</title>
+  <style>
+    /* Reset e estilos gerais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f78ca0, #f9748f);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: fadeInDown 2s ease;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Botão de surpresa */
+    .btn {
+      background: #fff;
+      color: #f9748f;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 2;
+    }
+    .btn:hover {
+      background: #f0f0f0;
+    }
+    /* Caixa de mensagem */
+    .message {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+      animation-delay: 2s;
+      z-index: 2;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    /* Estilos dos corações com clip-path ajustado */
+    .heart {
+      position: absolute;
+      background-color: red;
+      opacity: 0.8;
+      pointer-events: none;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Valentines, minha eterna namorada!</h1>
+  
+  <!-- Mensagem inicial -->
+  <div class="message" id="loveMessage">
+    <p>Você é a razão do meu sorriso, a luz dos meus dias. Te amo!</p>
+  </div>
+  
+  <!-- Botão para revelar mensagem extra -->
+  <button class="btn" id="showMore">Surpresa!</button>
+  
+  <script>
+    // Função para criar corações flutuantes
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      
+      // Tamanho aleatório entre 20px e 40px
+      const size = Math.random() * 20 + 20;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+      
+      // Posição horizontal aleatória
+      heart.style.left = Math.random() * 100 + 'vw';
+      
+      // Duração aleatória da animação
+      const duration = Math.random() * 3 + 4;
+      heart.style.animation = `floatUp ${duration}s linear infinite`;
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      
+      // Adiciona o coração à página
+      document.body.appendChild(heart);
+      
+      // Remove o coração após a animação para não sobrecarregar o DOM
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000 + 500);
+    }
+    
+    // Cria corações periodicamente
+    setInterval(createHeart, 500);
+    
+    // Evento para exibir mensagem extra quando o botão é clicado
+    document.getElementById('showMore').addEventListener('click', function() {
+      const extraMessage = document.createElement('div');
+      extraMessage.classList.add('message');
+      extraMessage.style.marginTop = '20px';
+      extraMessage.innerHTML = '<p>Eu estou com saudades, mas na verdade isso não é surpresa pra ninguem</p>';
+      document.body.appendChild(extraMessage);
+      this.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
